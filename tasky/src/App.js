@@ -8,15 +8,16 @@ function App() {
 
   const [ taskState, setTaskState ] = useState({
     tasks: [
-      { id: 1, title:"Dishes", description: "Empty dishwasher.", deadline: "Today", done: false },
-      { id: 2, title: "Laundry", description: "Fold clothes and put away.", deadline: "Tomorrow", done: false },
-      { id: 3, title: "Tidy up", description: "Tidy your room.", deadline: "Today", done: false },
-      { id: 4, title: "Wash", description: "Wash the car.", deadline: "Tomorrow", done: false }
+      { id: 1, title:"Dishes", priority: "Low", description: "Empty dishwasher.", deadline: "Today", done: false },
+      { id: 2, title: "Laundry", priority: "Medium", description: "Fold clothes and put away.", deadline: "Tomorrow", done: false },
+      { id: 3, title: "Tidy up", priority: "High", description: "Tidy your room.", deadline: "Today", done: false },
+      { id: 4, title: "Wash", priority: "Medium", description: "Wash the car.", deadline: "Tomorrow", done: false }
     ]
   });
 
   const [ formState, setFormState ] = useState({
     title: "",
+    priority: "",
     description: "",
     deadline: ""
   });
@@ -39,6 +40,9 @@ function App() {
     switch(event.target.name) {
       case "title":
           form.title = event.target.value;
+          break;
+      case "priority":
+          form.priority = event.target.value;
           break;
       case "description":
           form.description = event.target.value;
@@ -71,6 +75,7 @@ function App() {
       {taskState.tasks.map((task, index) => (              
         <Task 
           title={task.title}
+          priority={task.priority}
           description={task.description}
           deadline={task.deadline}
           key={task.id}
